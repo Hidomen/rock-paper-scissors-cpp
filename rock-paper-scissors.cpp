@@ -7,43 +7,38 @@ string playername;
 int playeract;
 char again;
 bool start = false;
-// scores
+
 int scorep = 0;
 int scorec = 0;
 
 void resultText(string rcomp, string rplayer, string winner);
-void startScreen();
-void checkWin();
+void startSec();
+void result();
 void playAgain();
 
 int main() {
+
     do {
 
-    startScreen();
-    if ( playeract !=1 && playeract !=2 && playeract !=3) {
-        cout << "@@ Invalid Weapon!" << endl;
-        main();
-    }
-    checkWin();
-        cout << "\n*****************************************";  
-        //play again section
-        playAgain(); 
-        // show scores
+    startSec();
+    result();
+    playAgain(); 
+
         if (again == 'n'){
             cout << "# COMP'S SCORE: " << scorec << endl << "# " << playername << "'S SCORE: " << scorep;
             cout << "\n-----------------------------------------\n";
-        } 
-        //
+        }
+
     } while (again == 'y' || again == 'Y');
 
     return 0;
 }
 
-void checkWin(){
+void result(){
     srand(time(NULL));
-    int bot = (rand() % 3) + 1;
+    int cmove = (rand() % 3) + 1;
 
-    switch(bot){
+    switch(cmove){
         case 1: 
         cout << "-----------------------------------------\n";
             if( playeract == 1 ){
@@ -80,12 +75,10 @@ void checkWin(){
                 resultText("SCISSORS", "SCISSOR", "NOBODY");
             }
             break;
-        default:
-            cout << "ERROR 2" << endl;
-            break;
     }
+    cout << "\n*****************************************";  
 }
-void startScreen(){
+void startSec(){
     if ( start == false ){
     cout << "********** ROCK-PAPER-SCISSORS **********\n";
     cout << "NAME: ";
@@ -99,8 +92,12 @@ void startScreen(){
     cin.clear();
     fflush(stdin);
 
+        if ( playeract !=1 && playeract !=2 && playeract !=3) {
+        cout << "@@ Invalid Weapon!" << endl;
+        main();
+    }
 }
-void resultText (string rcomp, string rplayer, string winner){
+void resultText(string rcomp, string rplayer, string winner){
     cout << "COMP: " << rcomp << endl << playername << ": " << rplayer << endl << "# " << winner << " WON";
 }
 void playAgain(){
