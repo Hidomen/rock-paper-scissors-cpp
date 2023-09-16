@@ -1,9 +1,7 @@
 #include <iostream>
 #include <ctime>
 
-using namespace std;
-
-string playername;
+std::string playername;
 int playeract;
 char again;
 bool start = false;
@@ -11,7 +9,7 @@ bool start = false;
 int scorep = 0;
 int scorec = 0;
 
-void resultText(string rcomp, string rplayer, string winner);
+void resultText(std::string rcomp, std::string rplayer, std::string winner);
 void startSec();
 void result();
 void playAgain();
@@ -24,9 +22,9 @@ int main() {
     result();
     playAgain(); 
 
-        if (again == 'n'){
-            cout << "# COMP'S SCORE: " << scorec << endl << "# " << playername << "'S SCORE: " << scorep;
-            cout << "\n-----------------------------------------\n";
+        if (again == 'n' || again == 'N'){
+            std::cout << "# COMP'S SCORE: " << scorec << '\n' << "# " << playername << "'S SCORE: " << scorep;
+            std::cout << "\n-----------------------------------------\n";
         }
 
     } while (again == 'y' || again == 'Y');
@@ -40,7 +38,7 @@ void result(){
 
     switch(cmove){
         case 1: 
-        cout << "-----------------------------------------\n";
+        std::cout << "-----------------------------------------\n";
             if( playeract == 1 ){
                 resultText("ROCK", "ROCK", "NOBODY");
             } else if ( playeract == 2 ){
@@ -52,7 +50,7 @@ void result(){
             }
             break;
         case 2: 
-        cout << "-----------------------------------------\n";
+        std::cout << "-----------------------------------------\n";
             if( playeract == 1 ){
                 resultText("PAPER", "ROCK", "COMP");
                 scorec++;
@@ -64,7 +62,7 @@ void result(){
             }
             break;
         case 3: 
-        cout << "-----------------------------------------\n";
+        std::cout << "-----------------------------------------\n";
             if( playeract == 1 ){
                 resultText("SCISSORS", "ROCK", playername);
                 scorep++;
@@ -76,38 +74,38 @@ void result(){
             }
             break;
     }
-    cout << "\n*****************************************";  
+    std::cout << "\n*****************************************";  
 }
 void startSec(){
     if ( start == false ){
-    cout << "********** ROCK-PAPER-SCISSORS **********\n";
-    cout << "NAME: ";
-    getline (cin >> ws, playername);
+    std::cout << "********** ROCK-PAPER-SCISSORS **********\n";
+    std::cout << "NAME: ";
+    getline (std::cin >> std::ws, playername);
     start = true;
     }
-    cout << "| 1. ROCK" << "\n| 2. PAPER" << "\n| 3. SCISSORS" << endl;
-    cout << "Choose your weapon: ";
-    cin >> playeract;
+    std::cout << "| 1. ROCK" << "\n| 2. PAPER" << "\n| 3. SCISSORS\n";
+    std::cout << "Choose your weapon: ";
+    std::cin >> playeract;
 
-    cin.clear();
+    std::cin.clear();
     fflush(stdin);
 
         if ( playeract !=1 && playeract !=2 && playeract !=3) {
-        cout << "@@ Invalid Weapon!" << endl;
+        std::cout << "@@ Invalid Weapon!\n";
         main();
     }
 }
-void resultText(string rcomp, string rplayer, string winner){
-    cout << "COMP: " << rcomp << endl << playername << ": " << rplayer << endl << "# " << winner << " WON";
+void resultText(std::string rcomp, std::string rplayer, std::string winner){
+    std::cout << "COMP: " << rcomp << '\n' << playername << ": " << rplayer << '\n' << "# " << winner << " WON";
 }
 void playAgain(){
-        cout << "\nPLAY AGAIN? y/n: ";
-        cin >> again;
+        std::cout << "\nPLAY AGAIN? y/n: ";
+        std::cin >> again;
         while ( again != 'y' && again != 'n' && again != 'Y' && again != 'N'){
-            cout << "Invalid answer. Play again? y/n: ";
-            cin >> again;
+            std::cout << "Invalid answer. Play again? y/n: ";
+            std::cin >> again;
 
-            cin.clear();
+            std::cin.clear();
             fflush(stdin);
         }    
 }
